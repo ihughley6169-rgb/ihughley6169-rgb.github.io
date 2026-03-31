@@ -1,167 +1,234 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <base href="https://cdn.jsdelivr.net/gh/gn-math/gn-math-DONTDMCA@main/">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VIRO MATH</title>
-    
-    <link rel="icon" type="image/png" href="favicon.png">
-    <script async src="https://googletagmanager.com"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-WX5VS54ZDW');
-
-        window.addEventListener('beforeunload', (e) => {
-            e.preventDefault();
-            e.returnValue = '';
-        });
-    </script>
-
+    <title>Viros Prox Loader • Student Resource Hub</title>
+    <link href="https://googleapis.com" rel="stylesheet">
+    <link rel="stylesheet" href="https://cloudflare.com">
     <style>
-        :root {
-            --bg: #0b051a;
-            --surface: #1a0b35;
-            --border: #3c1e70;
-            --text: #ffffff;
-            --text-muted: #a78bfa;
-            --accent-blue: #3b82f6;
-            --primary-purple: #8b5cf6;
-            --gradient-viro: linear-gradient(135deg, #6d28d9 0%, #2563eb 100%);
-            --shadow-glow: 0 0 15px rgba(139, 92, 246, 0.4);
-            --radius: 12px;
-        }
+        /* --- VIROS PROX STYLING --- */
+        *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
+        body{background:#0b0a0f;color:#f2eaff;min-height:100vh;overflow-x:hidden;position:relative}
+        #particles{position:fixed;top:0;left:0;width:100%;height:100%;z-index:1;pointer-events:none}
+        .container{max-width:1200px;margin:0 auto;padding:2rem 1rem;position:relative;z-index:2}
+        
+        .logo-row{display:flex;justify-content:center;align-items:center;gap:16px;margin-bottom:16px;flex-wrap:wrap}
+        .logo-icon{font-size:3rem;background:linear-gradient(145deg,#d4c0ff,#9f5eff);-webkit-background-clip:text;background-clip:text;color:transparent}
+        h1{text-align:center;font-size:3rem;background:linear-gradient(145deg,#d4c0ff,#9f5eff);-webkit-background-clip:text;background-clip:text;color:transparent;font-weight:800}
+        .sub{text-align:center;color:#bcb0da;margin-top:8px;font-size:0.85rem;letter-spacing:0.3px}
+        .link-count-badge{display:inline-block;background:rgba(180,122,255,0.15);border-radius:40px;padding:4px 12px;font-size:0.7rem;color:#c4aaff;margin:12px auto;display:block;text-align:center;width:fit-content}
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            margin: 0;
-            line-height: 1.6;
-        }
+        .search-wrap{max-width:500px;margin:32px auto 24px;position:relative}
+        .search-box{display:flex;align-items:center;background:rgba(20,16,32,0.7);backdrop-filter:blur(8px);border:1px solid #3b2a55;border-radius:60px;padding:4px 8px 4px 20px;transition:all 0.3s ease}
+        .search-box:focus-within{border-color:#b47aff;box-shadow:0 0 20px rgba(180,122,255,0.2)}
+        .search-box i{color:#9f5eff;font-size:1rem}
+        .search-box input{flex:1;background:transparent;border:none;padding:14px 12px;color:#f2eaff;font-size:0.9rem;outline:none}
+        .search-box input::placeholder{color:#6a5a8a}
+        .clear-btn{background:rgba(255,255,255,0.08);border:none;color:#bcb0da;width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:0.9rem;transition:0.2s;opacity:0;pointer-events:none;display:flex;align-items:center;justify-content:center}
+        .clear-btn.visible{opacity:1;pointer-events:auto}
 
-        header {
-            background: var(--gradient-viro);
-            padding: 1rem;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
-        }
+        .pills{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-bottom:40px}
+        .pill{padding:8px 22px;border-radius:40px;font-size:0.75rem;font-weight:600;cursor:pointer;transition:all 0.25s ease;color:#bcb0da;background:rgba(20,16,32,0.6);border:1px solid #3b2a55;letter-spacing:0.3px}
+        .pill.active{background:#9f5eff;color:#fff;border-color:#9f5eff;box-shadow:0 4px 15px rgba(159,94,255,0.3)}
 
-        .header-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 1rem;
-        }
+        .category-section{margin-bottom:48px;opacity:0;animation:fadeIn 0.6s forwards}
+        @keyframes fadeIn{to{opacity:1}}
 
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 900;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
+        .cat-header{display:flex;align-items:center;gap:12px;margin-bottom:20px;padding-bottom:8px;border-bottom:1px solid rgba(180,122,255,0.2)}
+        .cat-label{display:flex;align-items:center;gap:10px;background:rgba(180,122,255,0.1);padding:6px 16px;border-radius:40px;border:1px solid rgba(180,122,255,0.2)}
+        .cat-label i{color:#9f5eff;font-size:0.85rem}
+        .cat-label span{font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:1px}
+        .cat-count{background:rgba(20,16,32,0.8);padding:3px 10px;border-radius:30px;font-size:0.7rem;font-weight:600;color:#c4aaff}
+        .cat-line{flex:1;height:1px;background:linear-gradient(90deg,rgba(180,122,255,0.3),transparent)}
 
-        .search-container {
-            display: flex;
-            flex: 1;
-            max-width: 600px;
-            gap: 0.5rem;
-        }
+        .cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px}
+        .link-card{background:#141020;border-radius:20px;padding:16px 18px;text-decoration:none;color:#f2eaff;border:1px solid #3b2a55;display:flex;align-items:center;gap:14px;position:relative;overflow:hidden;backdrop-filter:blur(2px);transition:all 0.3s cubic-bezier(0.2,0.9,0.4,1.1)}
+        .link-card:hover{transform:translateY(-6px) scale(1.02);border-color:#b47aff}
+        .glow-enabled.link-card:hover{box-shadow:0 12px 28px rgba(180,122,255,0.25)}
 
-        #searchBar, #sortOptions, #filterOptions {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 0.7rem 1rem;
-            border-radius: var(--radius);
-            color: white;
-            outline: none;
-            transition: 0.3s;
-        }
+        .favicon-wrap{width:48px;height:48px;background:rgba(255,255,255,0.05);border-radius:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0;border:1px solid rgba(180,122,255,0.2);overflow:hidden}
+        .favicon-wrap img{width:28px;height:28px;border-radius:4px;object-fit:contain}
+        .favicon-letter{font-size:20px;font-weight:800;background:linear-gradient(135deg,#d4c0ff,#9f5eff);-webkit-background-clip:text;background-clip:text;color:transparent}
 
-        #searchBar:focus {
-            background: rgba(255, 255, 255, 0.2);
-            box-shadow: var(--shadow-glow);
-        }
+        .card-text{flex:1;min-width:0}
+        .card-text .name{font-weight:600;font-size:0.95rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+        .card-text .domain{font-size:0.7rem;color:#8a7aae;margin-top:4px}
 
-        main {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem 1rem;
-        }
-
-        #zoneCount {
-            color: var(--text-muted);
-            margin-bottom: 1.5rem;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        #zoneCount::before {
-            content: '';
-            width: 10px; height: 10px;
-            background: var(--accent-blue);
-            border-radius: 50%;
-        }
-
-        #container, #featuredZones {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .zone-item {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            overflow: hidden;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .zone-item:hover {
-            transform: translateY(-5px);
-            border-color: var(--primary-purple);
-            box-shadow: var(--shadow-glow);
-        }
-
-        .hidden { display: none !important; }
+        #settingsBtn{position:fixed;bottom:20px;right:20px;background:#9f5eff;color:white;border:none;padding:12px 16px;border-radius:50px;cursor:pointer;z-index:100;font-size:1.2rem}
+        #settingsPanel{position:fixed;bottom:80px;right:20px;background:rgba(20,16,32,0.95);backdrop-filter:blur(12px);border:1px solid #3b2a55;border-radius:20px;padding:16px 20px;display:none;z-index:100;flex-direction:column;gap:12px}
     </style>
 </head>
 <body>
 
-<header>
-    <div class="header-content">
-        <div class="logo">VIRO MATH</div>
-        <div class="search-container">
-            <input type="text" id="searchBar" placeholder="Find a game...">
-            <select id="sortOptions">
-                <option value="az">A-Z</option>
-                <option value="za">Z-A</option>
-            </select>
-            <select id="filterOptions">
-                <option value="all">All Categories</option>
-            </select>
+<canvas id="particles"></canvas>
+
+<div class="container">
+    <div class="logo-row">
+        <i class="fas fa-bolt logo-icon"></i>
+        <h1>VIROS PROX LOADER</h1>
+    </div>
+    <div class="sub"><i class="fas fa-shield-alt"></i> curated links from ihughley6169</div>
+    <div class="link-count-badge" id="link-count">Scanning Github...</div>
+
+    <div class="search-wrap">
+        <div class="search-box">
+            <i class="fas fa-search"></i>
+            <input type="text" id="search-input" placeholder="Search resources..." autocomplete="off">
+            <button class="clear-btn" id="clear-btn">✕</button>
         </div>
     </div>
-</header>
 
-<main>
-    <div id="zoneCount">Syncing with VIRO Database...</div>
+    <div class="pills" id="pills"></div>
+    <div id="links-container"></div>
+</div>
+
+<button id="settingsBtn"><i class="fas fa-sliders-h"></i></button>
+<div id="settingsPanel">
+    <label style="color:#bcb0da; font-size:0.8rem; cursor:pointer; display:flex; align-items:center; gap:8px;">
+        <input type="checkbox" id="toggleParticles" checked> Particles
+    </label>
+    <label style="color:#bcb0da; font-size:0.8rem; cursor:pointer; display:flex; align-items:center; gap:8px;">
+        <input type="checkbox" id="toggleGlow" checked> Card Glow
+    </label>
+</div>
+
+<script>
+const SOURCE_URL = 'https://githubusercontent.com';
+const CORS_PROXY = 'https://allorigins.win';
+
+let allData = [];
+let activeCategory = 'All';
+
+// --- Particle Network ---
+const canvas = document.getElementById('particles');
+const ctx = canvas.getContext('2d');
+let particles = [];
+function initParticles() {
+    canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+    particles = Array.from({length: 70}, () => ({
+        x: Math.random() * canvas.width, y: Math.random() * canvas.height,
+        size: Math.random() * 2, speedX: (Math.random()-0.5)*0.4, speedY: (Math.random()-0.5)*0.4
+    }));
+}
+function animate() {
+    if(!document.getElementById('toggleParticles').checked) { ctx.clearRect(0,0,canvas.width,canvas.height); return; }
+    ctx.clearRect(0,0, canvas.width, canvas.height);
+    ctx.fillStyle = 'rgba(159, 94, 255, 0.2)';
+    particles.forEach(p => {
+        p.x += p.speedX; p.y += p.speedY;
+        if(p.x<0||p.x>canvas.width) p.speedX*=-1; if(p.y<0||p.y>canvas.height) p.speedY*=-1;
+        ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI*2); ctx.fill();
+    });
+    requestAnimationFrame(animate);
+}
+
+// --- Data Fetching & Specific Parsing ---
+async function fetchData() {
+    try {
+        const res = await fetch(`${CORS_PROXY}${encodeURIComponent(SOURCE_URL)}`);
+        const json = await res.json();
+        const doc = new DOMParser().parseFromString(json.contents, 'text/html');
+        
+        const headers = doc.querySelectorAll('h3');
+        headers.forEach(h => {
+            const catName = h.innerText.trim();
+            const list = h.nextElementSibling;
+            if(list && list.tagName === 'UL') {
+                const links = Array.from(list.querySelectorAll('a')).map(a => {
+                    const url = a.href.replace(window.location.origin, 'https://github.io');
+                    try {
+                        const domain = new URL(url).hostname;
+                        return { name: a.innerText.trim(), url, domain };
+                    } catch(e) {
+                        return { name: a.innerText.trim(), url, domain: 'external' };
+                    }
+                });
+                if(links.length) allData.push({ category: catName, links });
+            }
+        });
+        render();
+    } catch (e) {
+        document.getElementById('link-count').innerText = "Error Loading Data";
+    }
+}
+
+function render() {
+    const container = document.getElementById('links-container');
+    const pills = document.getElementById('pills');
+    const search = document.getElementById('search-input').value.toLowerCase();
+    const glow = document.getElementById('toggleGlow').checked;
     
-    <div id="featuredZones"></div>
-    <hr style="border: 0; border-top: 1px solid var(--border); margin: 2.5rem 0;">
-    <div id="container"></div>
-</main>
+    container.innerHTML = ''; pills.innerHTML = '';
+    
+    // Create Category Filter Pills
+    ['All', ...allData.map(d => d.category)].forEach(c => {
+        const p = document.createElement('div');
+        p.className = `pill ${activeCategory === c ? 'active' : ''}`;
+        p.innerText = c;
+        p.onclick = () => { activeCategory = c; render(); };
+        pills.appendChild(p);
+    });
 
-<script src="script.js"></script>
+    let total = 0;
+    allData.forEach(cat => {
+        if(activeCategory !== 'All' && activeCategory !== cat.category) return;
+        const filtered = cat.links.filter(l => l.name.toLowerCase().includes(search) || cat.category.toLowerCase().includes(search));
+        if(!filtered.length) return;
+        total += filtered.length;
 
+        const section = document.createElement('div');
+        section.className = 'category-section';
+        section.innerHTML = `
+            <div class="cat-header">
+                <div class="cat-label"><i class="fas fa-tag"></i><span>${cat.category}</span></div>
+                <div class="cat-count">${filtered.length}</div>
+                <div class="cat-line"></div>
+            </div>
+            <div class="cards-grid"></div>`;
+        
+        const grid = section.querySelector('.cards-grid');
+        filtered.forEach(l => {
+            const card = document.createElement('a');
+            card.href = l.url; card.target = "_blank";
+            card.className = `link-card ${glow ? 'glow-enabled' : ''}`;
+            const firstLetter = l.name.charAt(0).toUpperCase();
+            card.innerHTML = `
+                <div class="favicon-wrap">
+                    <img src="https://google.com{l.domain}" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+                    <div class="favicon-letter" style="display:none">${firstLetter}</div>
+                </div>
+                <div class="card-text">
+                    <div class="name">${l.name}</div>
+                    <div class="domain">${l.domain}</div>
+                </div>
+                <i class="fas fa-external-link-alt" style="font-size:0.7rem; opacity:0.3"></i>`;
+            grid.appendChild(card);
+        });
+        container.appendChild(section);
+    });
+    document.getElementById('link-count').innerText = `${total} Links Found`;
+}
+
+// Interactive Elements
+document.getElementById('search-input').oninput = (e) => {
+    document.getElementById('clear-btn').classList.toggle('visible', e.target.value.length > 0);
+    render();
+};
+document.getElementById('clear-btn').onclick = () => {
+    document.getElementById('search-input').value = '';
+    document.getElementById('clear-btn').classList.remove('visible');
+    render();
+};
+document.getElementById('settingsBtn').onclick = () => {
+    const p = document.getElementById('settingsPanel');
+    p.style.display = p.style.display === 'flex' ? 'none' : 'flex';
+};
+document.getElementById('toggleParticles').onchange = (e) => { if(e.target.checked) animate(); };
+document.getElementById('toggleGlow').onchange = () => render();
+
+window.onresize = initParticles;
+initParticles(); animate(); fetchData();
+</script>
 </body>
 </html>
