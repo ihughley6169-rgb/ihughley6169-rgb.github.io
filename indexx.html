@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <base href="https://cdn.jsdelivr.net/gh/gn-math/gn-math-DONTDMCA@main/">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIRO MATH</title>
+    
+    <link rel="icon" type="image/png" href="favicon.png">
+    <script async src="https://googletagmanager.com"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-WX5VS54ZDW');
+
+        window.addEventListener('beforeunload', (e) => {
+            e.preventDefault();
+            e.returnValue = '';
+        });
+    </script>
+
+    <style>
+        :root {
+            --bg: #0b051a;
+            --surface: #1a0b35;
+            --border: #3c1e70;
+            --text: #ffffff;
+            --text-muted: #a78bfa;
+            --accent-blue: #3b82f6;
+            --primary-purple: #8b5cf6;
+            --gradient-viro: linear-gradient(135deg, #6d28d9 0%, #2563eb 100%);
+            --shadow-glow: 0 0 15px rgba(139, 92, 246, 0.4);
+            --radius: 12px;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        header {
+            background: var(--gradient-viro);
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .search-container {
+            display: flex;
+            flex: 1;
+            max-width: 600px;
+            gap: 0.5rem;
+        }
+
+        #searchBar, #sortOptions, #filterOptions {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0.7rem 1rem;
+            border-radius: var(--radius);
+            color: white;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        #searchBar:focus {
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: var(--shadow-glow);
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        #zoneCount {
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        #zoneCount::before {
+            content: '';
+            width: 10px; height: 10px;
+            background: var(--accent-blue);
+            border-radius: 50%;
+        }
+
+        #container, #featuredZones {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .zone-item {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .zone-item:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-purple);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .hidden { display: none !important; }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="header-content">
+        <div class="logo">VIRO MATH</div>
+        <div class="search-container">
+            <input type="text" id="searchBar" placeholder="Find a game...">
+            <select id="sortOptions">
+                <option value="az">A-Z</option>
+                <option value="za">Z-A</option>
+            </select>
+            <select id="filterOptions">
+                <option value="all">All Categories</option>
+            </select>
+        </div>
+    </div>
+</header>
+
+<main>
+    <div id="zoneCount">Syncing with VIRO Database...</div>
+    
+    <div id="featuredZones"></div>
+    <hr style="border: 0; border-top: 1px solid var(--border); margin: 2.5rem 0;">
+    <div id="container"></div>
+</main>
+
+<script src="script.js"></script>
+
+</body>
+</html>
